@@ -14,7 +14,7 @@ def cnx_and_query(query,database = db_path):
 
 
 def get_list_of_managers():
-    query = '''select username, max(season) as last_season from users group by username'''
+    query = '''select username, season from users group by username'''
     data = cnx_and_query(query)
     return data
 
