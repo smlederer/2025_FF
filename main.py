@@ -8,13 +8,27 @@ import utils.db_utils as dbu
 app, rt = fast_app(live=True)
 
 manager_name = 'smlederer'
+manager_data = dbu.get_list_of_managers()
 managers = dbu.get_list_of_managers()['username'].unique().tolist()
 
 
-
+#homepage
 @rt('/')
 def get():
     return A('smlederer',href='managers/smlederer')
+
+
+@rt('/managers')
+def get():
+    managers = dbu.get_list_of_managers()['username'].unique().tolist()
+    page = Main(
+    Div(*[Card(Div(B(i),style='text-align:center;font-size:24px;'),
+header='test',        footer='test',
+                    style='text-align:start;font-size:max(1rem,1vw)')
+        for i in managers])
+    )
+
+    return page
 
 @rt('/managers/{manager_name}')
 def get(manager_name:str):

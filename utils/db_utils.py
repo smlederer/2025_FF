@@ -1,8 +1,12 @@
 import sqlite3 as sql
 import pandas as pd 
+import os
 
 
-def cnx_and_query(query,database = 'database/gg.db'):
+dirname = os.path.dirname(os.path.dirname(__file__)) #2025_FF
+db_path = os.path.join(dirname,'database/gg.db')
+
+def cnx_and_query(query,database = db_path):
     cnx = sql.connect(database)
     data = pd.read_sql_query(query,con=cnx)
     cnx.close()
@@ -10,7 +14,7 @@ def cnx_and_query(query,database = 'database/gg.db'):
 
 
 def get_list_of_managers():
-    query = '''select * from users'''
+    query = '''select username, max(season) as last_season from users group by username'''
     data = cnx_and_query(query)
     return data
 
@@ -164,8 +168,10 @@ class user_info():
     
 
 if __name__ == '__main__':
-    u = user_info('smlederer')
-    print(u.results_by_season)
-    print(u.results_head_to_head)
-    print(u.trophy_case)
-    print(len(u.trophy_case))
+    # u = user_info('smlederer')
+    # print(u.results_by_season)
+    # print(u.results_head_to_head)
+    # print(u.trophy_case)
+    # print(len(u.trophy_case))
+    print(dirname)
+    print(db_path)
