@@ -1,9 +1,11 @@
 from fasthtml.common import *
 import random
+import os
+
 
 import pages.nav as n
-
-quotes = 'database/sun_hoe_tzu.txt'
+dirname = os.path.dirname(os.path.dirname(__file__)) #2025_FF
+quotes = os.path.join(dirname,'database/sun_hoe_tzu.txt')
 
 #images
 logo= 'assets/logo.png'
