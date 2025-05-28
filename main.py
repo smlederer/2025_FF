@@ -6,6 +6,8 @@ import utils.db_utils as dbu
 
 import pages.managers as m
 import pages.homepage as h
+import pages.league_history as lh
+import pages.hall_of_fame as hof
 import pages.nav as n
 
 
@@ -25,6 +27,13 @@ def get():
 def get(manager_name:str):
     return m.personal_page(manager_name)
 
+@rt('/league-history')
+def get():
+    return lh.league_history_landing()
+
+@rt('/hall-of-fame')
+def get():
+    return hof.hof()
 
 if __name__ == '__main__':
     serve(port=8080)

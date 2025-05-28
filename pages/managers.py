@@ -8,7 +8,7 @@ import pages.nav as n
 def all_manager_page():
     raw_managers_data = dbu.get_list_of_managers()
     managers = raw_managers_data['username'].unique().tolist()
-    page = Main(
+    page = Title('Greenwood Games - Managers'),Main(
     n.nav_bar('Managers'),
     Div(*[Card(Div(B(A(i,href=f'/managers/{i}',role='button')),style='text-align:center;font-size:24px;'),
     header='',        
